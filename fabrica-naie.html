@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fábrica de Naiê - Editor de Vídeos Instagram</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Editor de vídeo web avançado para criação de conteúdo viral. Sistema de segmentos, seleção de partes e múltiplos layouts para Instagram.">
+    <meta name="keywords" content="editor de vídeo, instagram, conteúdo viral, segmentos, split screen, picture in picture">
+    <meta name="author" content="Fábrica de Naiê">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fabrica-naie.netlify.app/">
+    <meta property="og:title" content="Fábrica de Naiê - Editor de Vídeos Instagram">
+    <meta property="og:description" content="Editor de vídeo web avançado para criação de conteúdo viral. Sistema de segmentos, seleção de partes e múltiplos layouts.">
+    <meta property="og:image" content="https://fabrica-naie.netlify.app/preview.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://fabrica-naie.netlify.app/">
+    <meta property="twitter:title" content="Fábrica de Naiê - Editor de Vídeos Instagram">
+    <meta property="twitter:description" content="Editor de vídeo web avançado para criação de conteúdo viral.">
+    <meta property="twitter:image" content="https://fabrica-naie.netlify.app/preview.png">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#4CAF50">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Fábrica de Naiê">
+    
+    <!-- Performance -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1><i class="fas fa-magic"></i> Fábrica de Naiê</h1>
+                <p>Transforme seus vídeos em conteúdo viral para Instagram</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Video Input Section -->
+            <section class="video-input-section">
+                <h2><i class="fab fa-youtube"></i> Carregar Vídeos do YouTube</h2>
+                <div class="video-inputs">
+                    <div class="video-input-group">
+                        <label for="video1-url">Vídeo 1 (URL do YouTube):</label>
+                        <input type="url" id="video1-url" placeholder="https://www.youtube.com/watch?v=..." />
+                        <button onclick="loadVideo(1)" class="load-btn">
+                            <i class="fas fa-download"></i> Carregar
+                        </button>
+                        <div id="video1-preview" class="video-preview"></div>
+                    </div>
+                    
+                    <div class="video-input-group">
+                        <label for="video2-url">Vídeo 2 (URL do YouTube):</label>
+                        <input type="url" id="video2-url" placeholder="https://www.youtube.com/watch?v=..." />
+                        <button onclick="loadVideo(2)" class="load-btn">
+                            <i class="fas fa-download"></i> Carregar
+                        </button>
+                        <div id="video2-preview" class="video-preview"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Video Editor Section -->
+            <section class="video-editor-section">
+                <h2><i class="fas fa-edit"></i> Editor de Vídeo</h2>
+                <div class="editor-container">
+                    <!-- Preview Area -->
+                    <div class="preview-area">
+                        <div class="phone-frame">
+                            <div class="video-canvas-container">
+                                <canvas id="video-canvas" width="405" height="720"></canvas>
+                                <div class="text-overlay" id="text-overlay">
+                                    <div class="text-box" id="text-box" contenteditable="true">
+                                        Digite seu texto aqui...
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Controls Panel -->
+                    <div class="controls-panel">
+                        <!-- Video Layout Controls -->
+                        <div class="control-group">
+                            <h3><i class="fas fa-th-large"></i> Layout dos Vídeos</h3>
+                            <div class="layout-options">
+                                <button class="layout-btn active" data-layout="split-vertical">
+                                    <i class="fas fa-columns"></i> Dividido Vertical
+                                </button>
+                                <button class="layout-btn" data-layout="split-horizontal">
+                                    <i class="fas fa-grip-lines"></i> Dividido Horizontal
+                                </button>
+                                <button class="layout-btn" data-layout="picture-in-picture">
+                                    <i class="fas fa-square"></i> Picture in Picture
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Video Editor Controls -->
+                        <div class="control-group">
+                            <h3><i class="fas fa-video"></i> Editor de Vídeos</h3>
+                            <div class="video-editor-tabs">
+                                <button class="tab-btn active" data-video="1">
+                                    <i class="fas fa-play-circle"></i> Vídeo 1
+                                </button>
+                                <button class="tab-btn" data-video="2">
+                                    <i class="fas fa-play-circle"></i> Vídeo 2
+                                </button>
+                            </div>
+                            
+                            <div class="video-edit-panel" id="video-edit-1">
+                                <h4>Edição do Vídeo 1</h4>
+                                <div class="edit-controls">
+                                    <div class="control-row">
+                                        <div class="control-group">
+                                            <label for="video1-x">Posição X:</label>
+                                            <input type="range" id="video1-x" min="-200" max="200" value="0">
+                                            <span id="video1-x-value">0px</span>
+                                        </div>
+                                        <div class="control-group">
+                                            <label for="video1-y">Posição Y:</label>
+                                            <input type="range" id="video1-y" min="-200" max="200" value="0">
+                                            <span id="video1-y-value">0px</span>
+                                        </div>
+                                    </div>
+                                    <div class="control-row">
+                                        <div class="control-group">
+                                            <label for="video1-scale">Escala:</label>
+                                            <input type="range" id="video1-scale" min="0.5" max="2" step="0.1" value="1">
+                                            <span id="video1-scale-value">100%</span>
+                                        </div>
+                                        <div class="control-group">
+                                            <label for="video1-rotation">Rotação:</label>
+                                            <input type="range" id="video1-rotation" min="-180" max="180" value="0">
+                                            <span id="video1-rotation-value">0°</span>
+                                        </div>
+                                    </div>
+                                    <div class="control-row">
+                                        <div class="control-group">
+                                            <label for="video1-brightness">Brilho:</label>
+                                            <input type="range" id="video1-brightness" min="0" max="200" value="100">
+                                            <span id="video1-brightness-value">100%</span>
+                                        </div>
+                                        <div class="control-group">
+                                            <label for="video1-contrast">Contraste:</label>
+                                            <input type="range" id="video1-contrast" min="0" max="200" value="100">
+                                            <span id="video1-contrast-value">100%</span>
+                                        </div>
+                                    </div>
+                                    <div class="control-row">
+                                        <div class="control-group">
+                                            <label for="video1-saturation">Saturação:</label>
+                                            <input type="range" id="video1-saturation" min="0" max="200" value="100">
+                                            <span id="video1-saturation-value">100%</span>
+                                        </div>
+                                        <div class="control-group">
+                                            <label for="video1-opacity">Opacidade:</label>
+                                            <input type="range" id="video1-opacity" min="0" max="100" value="100">
+                                            <span id="video1-opacity-value">100%</span>
+                                        </div>
+                                    </div>
+                                    <div class="control-row">
+                                        <div class="control-group">
+                                            <label for="video1-speed">Velocidade:</label>
+                                            <input type="range" id="video1-speed" min="0.25" max="3" step="0.25" value="1">
+                                            <span id="video1-speed-value">1x</span>
+                                        </div>
+                                    </div>
+                                    <button class="reset-btn" onclick="resetVideoSettings(1)">
+                                        <i class="fas fa-undo"></i> Resetar Vídeo 1
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="video-edit-panel" id="video-edit-2" style="display: none;">
+                                <h4>Edição do Vídeo 2</h4>
+                                <div class="edit-controls">
+                                    <div class="control-row">
+                                        <div class="control-group">
+                                            <label for="video2-x">Posição X:</label>
+                                            <input type="range" id="video2-x" min="-200" max="200" value="0">
+                                            <span id="video2-x-value">0px</span>
+                                        </div>
+                                        <div class="control-group">
+                                            <label for="video2-y">Posição Y:</label>
+                                            <input type="range" id="video2-y" min="-200" max="200" value="0">
+                                            <span id="video2-y-value">0px</span>
+                                        </div>
+                                    </div>
+                                    <div class="control-row">
+                                        <div class="control-group">
+                                            <label for="video2-scale">Escala:</label>
+                                            <input type="range" id="video2-scale" min="0.5" max="2" step="0.1" value="1">
+                                            <span id="video2-scale-value">100%</span>
+                                        </div>
+                                        <div class="control-group">
+                                            <label for="video2-rotation">Rotação:</label>
+                                            <input type="range" id="video2-rotation" min="-180" max="180" value="0">
+                                            <span id="video2-rotation-value">0°</span>
+                                        </div>
+                                    </div>
+                                    <div class="control-row">
+                                        <div class="control-group">
+                                            <label for="video2-brightness">Brilho:</label>
+                                            <input type="range" id="video2-brightness" min="0" max="200" value="100">
+                                            <span id="video2-brightness-value">100%</span>
+                                        </div>
+                                        <div class="control-group">
+                                            <label for="video2-contrast">Contraste:</label>
+                                            <input type="range" id="video2-contrast" min="0" max="200" value="100">
+                                            <span id="video2-contrast-value">100%</span>
+                                        </div>
+                                    </div>
+                                    <div class="control-row">
+                                        <div class="control-group">
+                                            <label for="video2-saturation">Saturação:</label>
+                                            <input type="range" id="video2-saturation" min="0" max="200" value="100">
+                                            <span id="video2-saturation-value">100%</span>
+                                        </div>
+                                        <div class="control-group">
+                                            <label for="video2-opacity">Opacidade:</label>
+                                            <input type="range" id="video2-opacity" min="0" max="100" value="100">
+                                            <span id="video2-opacity-value">100%</span>
+                                        </div>
+                                    </div>
+                                    <div class="control-row">
+                                        <div class="control-group">
+                                            <label for="video2-speed">Velocidade:</label>
+                                            <input type="range" id="video2-speed" min="0.25" max="3" step="0.25" value="1">
+                                            <span id="video2-speed-value">1x</span>
+                                        </div>
+                                    </div>
+                                    <button class="reset-btn" onclick="resetVideoSettings(2)">
+                                        <i class="fas fa-undo"></i> Resetar Vídeo 2
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Segment Editor -->
+                        <div class="control-group">
+                            <h3><i class="fas fa-cut"></i> Editor de Segmentos</h3>
+                            <div class="segment-controls">
+                                <div class="timeline-container">
+                                    <div class="timeline-header">
+                        <span>Timeline dos Vídeos</span>
+                        <div class="timeline-actions">
+                            <button class="btn-primary" onclick="addSegment()">
+                                <i class="fas fa-plus"></i> Adicionar Segmento
+                            </button>
+                            <button class="btn-secondary" onclick="clearAllSegments()">
+                                <i class="fas fa-trash"></i> Limpar Todos
+                            </button>
+                        </div>
+                        
+                        <!-- Seleção de Parte do Vídeo -->
+                        <div class="video-selection-controls" style="margin: 15px 0; padding: 15px; border: 2px solid #4CAF50; border-radius: 8px; background: rgba(76, 175, 80, 0.1);">
+                            <h4 style="margin: 0 0 10px 0; color: #4CAF50;">Seleção de Parte do Vídeo (Máx. 4 min)</h4>
+                            <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+                                <div>
+                                    <label for="video-start-time">Início:</label>
+                                    <input type="number" id="video-start-time" min="0" step="0.1" value="0" style="width: 80px; margin-left: 5px;">
+                                    <span>s</span>
+                                </div>
+                                <div>
+                                    <label for="video-end-time">Fim:</label>
+                                    <input type="number" id="video-end-time" min="0" step="0.1" value="0" style="width: 80px; margin-left: 5px;">
+                                    <span>s</span>
+                                </div>
+                                <div>
+                                    <span id="selection-duration" style="font-weight: bold; color: #4CAF50;">Duração: 0s</span>
+                                </div>
+                                <button onclick="applyVideoSelection()" style="background: #4CAF50; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer;">Aplicar Seleção</button>
+                                <button onclick="resetVideoSelection()" style="background: #f44336; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer;">Resetar</button>
+                            </div>
+                            <div id="selection-warning" style="color: #f44336; font-weight: bold; margin-top: 10px; display: none;">
+                                ⚠️ A duração selecionada excede 4 minutos!
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Controle de Tempo para Preview -->
+                    <div class="time-control">
+                        <label for="timeSlider">Tempo Atual: <span id="currentTimeDisplay">0:00</span></label>
+                        <input type="range" id="timeSlider" min="0" max="60" step="0.1" value="0" style="width: 100%; margin: 10px 0;">
+                        <div style="display: flex; justify-content: space-between; font-size: 12px; color: #666;">
+                            <span>0:00</span>
+                            <span id="maxTimeDisplay">1:00</span>
+                        </div>
+                    </div>
+                                    <div class="timeline-track" id="timeline-track">
+                                        <div class="timeline-ruler">
+                                            <div class="time-marker" style="left: 0%">0s</div>
+                                            <div class="time-marker" style="left: 25%">25%</div>
+                                            <div class="time-marker" style="left: 50%">50%</div>
+                                            <div class="time-marker" style="left: 75%">75%</div>
+                                            <div class="time-marker" style="left: 100%">100%</div>
+                                        </div>
+                                        <div class="segments-container" id="segments-container">
+                                            <!-- Segmentos serão adicionados dinamicamente -->
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="segment-editor" id="segment-editor" style="display: none;">
+                                    <h4>Editar Segmento</h4>
+                                    <div class="segment-form">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="segment-start">Início (segundos):</label>
+                                                <input type="number" id="segment-start" min="0" step="0.1" value="0">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="segment-end">Fim (segundos):</label>
+                                                <input type="number" id="segment-end" min="0" step="0.1" value="10">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="segment-video">Vídeo:</label>
+                                                <select id="segment-video">
+                                                    <option value="video1">Vídeo 1</option>
+                                                    <option value="video2">Vídeo 2</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>
+                                                    <input type="checkbox" id="segment-active" checked> Ativo
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <button class="btn-primary" onclick="saveSegment()">
+                                                <i class="fas fa-save"></i> Salvar
+                                            </button>
+                                            <button class="btn-danger" onclick="deleteSegment()">
+                                                <i class="fas fa-trash"></i> Excluir
+                                            </button>
+                                            <button class="btn-secondary" onclick="cancelSegmentEdit()">
+                                                <i class="fas fa-times"></i> Cancelar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text Controls -->
+                        <div class="control-group">
+                            <h3><i class="fas fa-font"></i> Controles de Texto</h3>
+                        <div class="text-controls">
+                            <input type="text" id="text-content" placeholder="Digite o gancho aqui..." />
+                                <div class="text-style-controls">
+                                    <label>Tamanho:</label>
+                                    <input type="range" id="font-size" min="16" max="48" value="24" />
+                                    <span id="font-size-value">24px</span>
+                                    
+                                    <label>Cor:</label>
+                                    <input type="color" id="text-color" value="#ffffff" />
+                                    
+                                    <label>Cor de Fundo:</label>
+                                    <input type="color" id="bg-color" value="#000000" />
+                                    
+                                    <label>Opacidade:</label>
+                                    <input type="range" id="bg-opacity" min="0" max="100" value="70" />
+                                    <span id="bg-opacity-value">70%</span>
+                                </div>
+                                <div class="text-position-controls">
+                                    <label>Posição:</label>
+                                    <select id="text-position">
+                                        <option value="top">Topo</option>
+                                        <option value="center" selected>Centro</option>
+                                        <option value="bottom">Inferior</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Video Controls -->
+                        <div class="control-group">
+                            <h3><i class="fas fa-play-circle"></i> Controles de Vídeo</h3>
+                            <div class="video-controls">
+                                <button id="play-pause-btn" onclick="togglePlayPause()">
+                                    <i class="fas fa-play"></i> Play/Pause
+                                </button>
+                                <div class="timeline-container">
+                                    <input type="range" id="timeline" min="0" max="100" value="0" />
+                                    <span id="time-display">00:00 / 00:00</span>
+                                </div>
+                                <div class="duration-controls">
+                                    <label>Duração (segundos):</label>
+                                    <input type="number" id="video-duration" min="5" max="60" value="15" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Export Controls -->
+                        <div class="control-group">
+                            <h3><i class="fas fa-download"></i> Exportar</h3>
+                            <div class="export-controls">
+                                <div class="export-settings">
+                                    <label>Qualidade:</label>
+                                    <select id="export-quality">
+                                        <option value="720p">720p (HD)</option>
+                                        <option value="1080p" selected>1080p (Full HD)</option>
+                                    </select>
+                                    
+                                    <label>FPS:</label>
+                                    <select id="export-fps">
+                                        <option value="24">24 FPS</option>
+                                        <option value="30" selected>30 FPS</option>
+                                        <option value="60">60 FPS</option>
+                                    </select>
+                                </div>
+                                <button id="export-btn" onclick="exportVideo()" class="export-btn">
+                                    <i class="fas fa-file-video"></i> Exportar MP4
+                                </button>
+                                <div id="export-progress" class="export-progress" style="display: none;">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill"></div>
+                                    </div>
+                                    <span class="progress-text">Processando...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay" style="display: none;">
+            <div class="loading-content">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Carregando vídeo...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ffmpeg/0.11.6/ffmpeg.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

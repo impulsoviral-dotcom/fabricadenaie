@@ -1,0 +1,53 @@
+{
+  "name": "Fábrica de Naiê - Editor de Vídeos",
+  "short_name": "Fábrica Naiê",
+  "description": "Editor de vídeo web avançado para criação de conteúdo viral",
+  "start_url": "/fabrica-naie.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4CAF50",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "pt-BR",
+  "categories": ["productivity", "multimedia", "entertainment"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%234CAF50' rx='20'/><text x='96' y='130' font-size='120' text-anchor='middle' fill='white'>🎬</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%234CAF50' rx='50'/><text x='256' y='350' font-size='320' text-anchor='middle' fill='white'>🎬</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23f5f5f5'/><rect x='40' y='40' width='1200' height='640' fill='white' stroke='%23ddd'/><text x='640' y='360' font-size='48' text-anchor='middle' fill='%23333'>Fábrica de Naiê - Editor de Vídeos</text></svg>",
+      "sizes": "1280x720",
+      "type": "image/svg+xml",
+      "form_factor": "wide",
+      "label": "Editor principal"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Novo Projeto",
+      "short_name": "Novo",
+      "description": "Criar novo projeto de vídeo",
+      "url": "/fabrica-naie.html",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect width='96' height='96' fill='%234CAF50' rx='10'/><text x='48' y='65' font-size='60' text-anchor='middle' fill='white'>➕</text></svg>",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
